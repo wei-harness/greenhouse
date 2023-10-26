@@ -1,11 +1,11 @@
-console.log('Initiating jobs...');
-let jobs = [];
+console.log('Initiating jobs page...');
+// let jobs = [];
 async function getJobs() {
-  console.log('Loading jobs...');
+  console.log('Fetching jobs...');
   const response = await fetch('https://boards-api.greenhouse.io/v1/boards/harnessinc/jobs');
   const data = await response.json();
   console.log(data);
-  jobs = data.jobs;
+  const jobs = data.jobs;
 
   const jobItem = document.getElementById('gh_job_item');
   const jobList = document.getElementById('gh_job_list');
@@ -21,11 +21,13 @@ async function getJobs() {
   })
 }
 
+// better to invoke it after document.ready
 getJobs();
 
+/* jquery not available here
 const sampleText = 'sample job!';
-
 $( document ).ready(() => {
   console.log('Jobs doc ready...');
   getJobs();
 });
+*/
