@@ -18,7 +18,9 @@ async function getJobs() {
     jobLink.setAttribute('href', job.absolute_url || '#')
     //location.name
     jobList.appendChild(newJobItem);
-  })
+  });
+  // remove job item template
+  jobList.removeChild(jobItem);
 }
 
 // better to invoke it after document.ready
