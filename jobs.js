@@ -13,7 +13,7 @@ async function getJobs() {
     const newJobItem = jobItem.cloneNode(true);
     const jobLink = newJobItem.getElementsByTagName('a')[0];
     //title
-    jobLink.innerText = job.title ? `${job.title} (${location.name})` : 'Untitled';
+    jobLink.innerText = job.title ? `${job.title} (${job.location.name})` : 'Untitled';
     //absolute_url
     jobLink.setAttribute('href', job.absolute_url || '#')
     //location.name
