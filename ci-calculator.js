@@ -2,6 +2,7 @@
 
 const numInputs = document.querySelectorAll('input');
 const Select = document.querySelectorAll('select');
+const add_additional = document.getElementById('add_additional');
 
 let number_of_builds_per_week = 100;
 let avg_build_time = 15;
@@ -184,7 +185,7 @@ function calculate(
     saved_hour = harness_saving_percentage * annual_hour;
     const hours = hour_saved.getElementsByTagName('h2')[0];
     hours.textContent = `${format(Math.round(saved_hour))} `;
-    console.log(hours.textContent);
+    console.log('calculate > hours.textContent: ', hours.textContent);
     if (other_provider) {
       const provider = other_provider.getElementsByTagName('h3')[0];
       const cost = other_provider.getElementsByTagName('h2')[0];
@@ -261,7 +262,7 @@ function addToArray() {
     ? annual_cost_with_other_provider.push(circleCI_cost)
     : annual_cost_with_other_provider.push(github_actions_cost);
 
-  console.log(annual_hours_saved);
+  console.log('addToArray: ', { annual_hours_saved });
 
   main();
 }
@@ -302,7 +303,7 @@ add_additional.addEventListener('click', addToArray);
 
 /* ---- */
 
-const add_additional = document.getElementById('add_additional');
+// const add_additional = document.getElementById('add_additional');
 const tableContainer = document.querySelector('.table');
 let lock = true;
 
@@ -353,8 +354,14 @@ function handleAddAdditional() {
         lock = false;
         const row = e.target.closest('tr');
         const values = row.querySelectorAll('td');
-        console.log(values[0].textContent);
-        console.log(values[1].textContent);
+        console.log(
+          'handleAddAdditional > values[0].textContent ',
+          values[0].textContent
+        );
+        console.log(
+          'handleAddAdditional > values[1].textContent ',
+          values[1].textContent
+        );
 
         const annual_hrs_saved =
           ((parseInt(values[0].textContent) *
@@ -362,7 +369,7 @@ function handleAddAdditional() {
             52) /
             60) *
           0.3;
-        console.log(annual_hrs_saved);
+        console.log('handleAddAdditional: ', { annual_hrs_saved });
         switch (values[2].textContent) {
           case 'Linux_4_cores':
             harness_cost_per_mins = 0.01;
