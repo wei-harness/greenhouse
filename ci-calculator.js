@@ -153,6 +153,11 @@ function calculate(
   }
 
   weekly_build_minutes = number_of_builds_per_week * avg_build_time;
+  console.log({
+    number_of_builds_per_week,
+    avg_build_time,
+    weekly_build_minutes,
+  });
   harness_cost = Math.round(weekly_build_minutes * harness_cost_per_mins * 52);
   switch (selected_provider) {
     case 'circleCI':
