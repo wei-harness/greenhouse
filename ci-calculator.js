@@ -300,7 +300,7 @@ function clearBuildInputs() {
   }
 
   if (machineTypeInput) {
-    machineTypeInput.selectedIndex = 0;
+    machineTypeInput.selectedIndex = 1;
   }
   main();
 }
@@ -459,6 +459,8 @@ function handleAddAdditional() {
     const tbody = table.getElementsByTagName('tbody');
     tbody[0].parentElement.remove();
   });
+
+  clearBuildInputs();
 }
 
 add_additional.addEventListener('click', handleAddAdditional);
