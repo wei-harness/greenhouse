@@ -292,16 +292,17 @@ function clearBuildInputs() {
   var machineTypeInput = document.getElementById('machine_type');
 
   if (weeklyBuildInput) {
-    weeklyBuildInput.value = '';
+    weeklyBuildInput.value = 0;
   }
 
   if (weeklyBuildMinutesInput) {
-    weeklyBuildMinutesInput.value = '';
+    weeklyBuildMinutesInput.value = 0;
   }
 
   if (machineTypeInput) {
     machineTypeInput.selectedIndex = 0;
   }
+  main();
 }
 
 add_additional.addEventListener('click', addToArray);
