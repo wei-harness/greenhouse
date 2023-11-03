@@ -79,7 +79,9 @@ function main() {
   const weekly_build_value = weekly_build_input.value.replace(/,/g, ''); // Remove commas
   number_of_builds_per_week = parseFloat(weekly_build_value);
 
-  avg_build_time = document.getElementById('weekly_build_minutes').value;
+  avg_build_time = Math.parseInt(
+    document.getElementById('weekly_build_minutes').value
+  );
 
   if (isNaN(avg_build_time) || avg_build_time === '') {
     avg_build_time = 0;
