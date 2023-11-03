@@ -79,7 +79,7 @@ function main() {
   const weekly_build_value = weekly_build_input.value.replace(/,/g, ''); // Remove commas
   number_of_builds_per_week = parseFloat(weekly_build_value);
 
-  avg_build_time = Math.parseInt(
+  avg_build_time = parseInt(
     document.getElementById('weekly_build_minutes').value
   );
 
