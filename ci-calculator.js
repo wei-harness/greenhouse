@@ -405,21 +405,21 @@ add_additional.addEventListener('click', handleAddAdditional);
 
 /* =========== */
 
-/* */
-const numInputs = document.querySelectorAll('input');
-const Select = document.querySelectorAll('select');
+/*
+const numInputs = document.querySelectorAll("input");
+const Select = document.querySelectorAll("select");
 
 let number_of_builds_per_week = 100;
 let avg_build_time = 15;
-let selected_provider = 'circleCI';
-let selected_machine_type = 'Linux_4_cores';
+let selected_provider = "circleCI";
+let selected_machine_type = "Linux_4_cores";
 
 let machine_cost_per_mins;
 let weekly_build_minutes;
 
 let harness_cost; //yearly
-let circleCI_cost; //yearly
-let github_actions_cost; //yearly
+let circleCI_cost;  //yearly
+let github_actions_cost;  //yearly
 let other_provider_cost; // yearly
 
 let harness_cost_per_mins;
@@ -435,47 +435,47 @@ let annual_hours_saved = [];
 let annual_hour = 0;
 let saved_hour = 0;
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener("DOMContentLoaded", function () {
   main();
 });
 
 numInputs.forEach(function (input) {
-  input.addEventListener('input', function (e) {
-    if (e.target.value == '') {
+  input.addEventListener("input", function (e) {
+    if (e.target.value == "") {
       e.target.value = 0;
     }
     main();
   });
 });
 Select.forEach(function (select) {
-  select.addEventListener('input', function (e) {
+  select.addEventListener("input", function (e) {
     main();
   });
 });
 numInputs.forEach(function (input) {
-  input.addEventListener('input', function (e) {
-    if (e.target.value === '0') {
-      e.target.value = '';
+  input.addEventListener("input", function (e) {
+    if (e.target.value === "0") {
+      e.target.value = "";
     }
     main();
   });
 });
 
 function main() {
-  const provider = document.getElementById('provider');
+  const provider = document.getElementById("provider");
   selected_provider = provider.options[provider.selectedIndex].value;
-  if (!selected_provider || selected_provider === '') {
-    selected_provider = 'circleCI';
+  if (!selected_provider || selected_provider === "") {
+    selected_provider = "circleCI";
   }
-  const machine_type = document.getElementById('machine_type');
+  const machine_type = document.getElementById("machine_type");
   selected_machine_type =
     machine_type.options[machine_type.selectedIndex].value;
-  if (!selected_machine_type || selected_machine_type === '') {
-    selected_machine_type = 'Linux_4_cores';
+  if (!selected_machine_type || selected_machine_type === "") {
+    selected_machine_type = "Linux_4_cores";
   }
 
-  number_of_builds_per_week = document.getElementById('weekly_build').value;
-  avg_build_time = document.getElementById('weekly_build_minutes').value;
+  number_of_builds_per_week = document.getElementById("weekly_build").value;
+  avg_build_time = document.getElementById("weekly_build_minutes").value;
 
   calculate(
     selected_provider,
@@ -492,7 +492,7 @@ function calculate(
   number_of_builds_per_week
 ) {
   switch (selected_machine_type) {
-    case 'Linux_4_cores':
+    case "Linux_4_cores":
       harness_cost_per_mins = 0.01;
       //circleCI_cost_per_mins = 0.012;
       //github_actions_cost_per_mins = 0.016;
@@ -500,35 +500,39 @@ function calculate(
 
       break;
 
-    case 'Linux_8_cores':
+    case "Linux_8_cores":
       harness_cost_per_mins = 0.025;
       //circleCI_cost_per_mins = 0.06;
       //github_actions_cost_per_mins = 0.032;
       harness_saving_percentage = 0.3;
 
+
       break;
-    case 'Linux_16_cores':
+    case "Linux_16_cores":
       harness_cost_per_mins = 0.05;
       //circleCI_cost_per_mins = 0.012;
       //github_actions_cost_per_mins = 0.064;
       harness_saving_percentage = 0.3;
 
+
       break;
-    case 'Linux_32_cores':
+    case "Linux_32_cores":
       harness_cost_per_mins = 0.1;
       //circleCI_cost_per_mins = 0.18;
       //github_actions_cost_per_mins = 0.128;
       harness_saving_percentage = 0.3;
 
+
       break;
-    case 'Windows_4_cores':
+    case "Windows_4_cores":
       harness_cost_per_mins = 0.04;
       //circleCI_cost_per_mins = 0.072;
       //github_actions_cost_per_mins = 0.064;
       harness_saving_percentage = 0.3;
 
+
       break;
-    case 'macOS_M1_6_cores':
+    case "macOS_M1_6_cores":
       harness_cost_per_mins = 0.3;
       //circleCI_cost_per_mins = 0.09;
       //github_actions_cost_per_mins = 0.08;
@@ -543,60 +547,54 @@ function calculate(
   weekly_build_minutes = number_of_builds_per_week * avg_build_time;
   harness_cost = Math.round(weekly_build_minutes * harness_cost_per_mins * 52);
   switch (selected_provider) {
-    case 'circleCI':
-      circleCI_cost = Math.round(
-        harness_cost / (1 - harness_saving_percentage)
-      );
+    case "circleCI":
+      circleCI_cost = Math.round(harness_cost/(1-harness_saving_percentage));
       break;
 
-    case 'github_actions':
-      github_actions_cost = Math.round(
-        harness_cost / (1 - harness_saving_percentage)
-      );
+    case "github_actions":
+      github_actions_cost = Math.round(harness_cost/(1-harness_saving_percentage));
       break;
-    case 'other_provider':
-      other_provider_cost = Math.round(
-        harness_cost / (1 - harness_saving_percentage)
-      );
+    case "other_provider":
+      other_provider_cost = Math.round(harness_cost/(1-harness_saving_percentage));
       break;
 
     default:
       break;
   }
-  const other_provider = document.getElementById('other_provider');
-  const harness_provider = document.getElementById('harness');
-  const hour_saved = document.getElementById('hour_saved');
-  let table = document.querySelector('table');
+  const other_provider = document.getElementById("other_provider");
+  const harness_provider = document.getElementById("harness");
+  const hour_saved = document.getElementById("hour_saved");
+  let table = document.querySelector("table");
 
   if (!table) {
     annual_hour = (number_of_builds_per_week * avg_build_time * 52) / 60;
     saved_hour = harness_saving_percentage * annual_hour;
-    const hours = hour_saved.getElementsByTagName('h2')[0];
+    const hours = hour_saved.getElementsByTagName("h2")[0];
     hours.textContent = `${format(Math.round(saved_hour))} `;
     console.log(hours.textContent);
     if (other_provider) {
-      const provider = other_provider.getElementsByTagName('h3')[0];
-      const cost = other_provider.getElementsByTagName('h2')[0];
-      if (selected_provider === 'circleCI') {
-        provider.textContent = 'Annual cost with CircleCI';
+      const provider = other_provider.getElementsByTagName("h3")[0];
+      const cost = other_provider.getElementsByTagName("h2")[0];
+      if (selected_provider === "circleCI") {
+        provider.textContent = "Annual cost with CircleCI";
         cost.textContent = `$ ${format(circleCI_cost)} `;
-      } else if (selected_provider === 'github_actions') {
-        provider.textContent = 'Annual cost with Git Actions';
+      } else if (selected_provider === "github_actions"){
+        provider.textContent = "Annual cost with Git Actions";
         cost.textContent = `$ ${format(github_actions_cost)} `;
-      } else {
-        provider.textContent = 'Annual cost with current provider';
+      } else{
+        provider.textContent = "Annual cost with current provider";
         cost.textContent = `$ ${format(other_provider_cost)} `;
       }
     }
 
     if (harness_provider) {
-      const cost = harness_provider.getElementsByTagName('h2')[0];
+      const cost = harness_provider.getElementsByTagName("h2")[0];
       cost.textContent = ` $ ${format(harness_cost)} `;
     }
   } else {
-    const tbody = table.getElementsByTagName('tbody');
+    const tbody = table.getElementsByTagName("tbody");
 
-    const hours = hour_saved.getElementsByTagName('h2')[0];
+    const hours = hour_saved.getElementsByTagName("h2")[0];
 
     annual_hour = (number_of_builds_per_week * avg_build_time * 52) / 60;
     saved_hour = 0.3 * annual_hour;
@@ -604,23 +602,23 @@ function calculate(
     hours.textContent = `${Math.round(sum + saved_hour)} `;
 
     if (other_provider) {
-      const provider = other_provider.getElementsByTagName('h3')[0];
-      const cost = other_provider.getElementsByTagName('h2')[0];
+      const provider = other_provider.getElementsByTagName("h3")[0];
+      const cost = other_provider.getElementsByTagName("h2")[0];
 
       const sum = annual_cost_with_other_provider.reduce(
         (partialSum, a) => partialSum + a,
         0
       );
-      if (selected_provider === 'circleCI') {
-        provider.textContent = 'Annual cost with CircleCI';
+      if (selected_provider === "circleCI") {
+        provider.textContent = "Annual cost with CircleCI";
         cost.textContent = `$ ${circleCI_cost + sum} `;
       } else {
-        provider.textContent = 'Annual cost with Git Actions';
+        provider.textContent = "Annual cost with Git Actions";
         cost.textContent = `$ ${github_actions_cost + sum} `;
       }
     }
     if (harness_provider) {
-      const cost = harness_provider.getElementsByTagName('h2')[0];
+      const cost = harness_provider.getElementsByTagName("h2")[0];
 
       const sum = annual_cost_with_harness.reduce(
         (partialSum, a) => partialSum + a,
@@ -633,11 +631,11 @@ function calculate(
 
 function format(num) {
   if (num < 1000000) {
-    // Display the full number with commas
-    return num.toLocaleString();
+      // Display the full number with commas
+      return num.toLocaleString();
   } else {
-    // Display in the format "1.234M"
-    return (num / 1000000).toFixed(3) + 'M';
+      // Display in the format "1.234M"
+      return (num / 1000000).toFixed(3) + 'M';
   }
 }
 
@@ -666,13 +664,13 @@ function removeFromArray(other, harness, annual_hrs_saved) {
 
   main();
 }
-/* */
+*/
 
 /* -------- */
 
-/* */
-const add_additional = document.getElementById('add_additional');
-const tableContainer = document.querySelector('.table');
+/*
+const add_additional = document.getElementById("add_additional");
+const tableContainer = document.querySelector(".table");
 let lock = true;
 
 setInterval(function () {
@@ -682,10 +680,10 @@ setInterval(function () {
 }, 1000);
 function handleAddAdditional() {
   // lock = true;
-  let table = document.querySelector('table');
+  let table = document.querySelector("table");
 
   if (table) {
-    const tbody = table.getElementsByTagName('tbody');
+    const tbody = table.getElementsByTagName("tbody");
     const htmlToAppend = `
     <tr class="tab" >
       <td>${number_of_builds_per_week}</td>
@@ -694,9 +692,9 @@ function handleAddAdditional() {
       <td><i class="fa fa-trash"></i></td>
     </tr>
   `;
-    tbody[0].insertAdjacentHTML('beforeend', htmlToAppend);
+    tbody[0].insertAdjacentHTML("beforeend", htmlToAppend);
   } else {
-    table = document.createElement('table');
+    table = document.createElement("table");
 
     table.innerHTML = `
     <tr >
@@ -713,15 +711,15 @@ function handleAddAdditional() {
   `;
   }
   tableContainer.appendChild(table);
-  const tbody = table.getElementsByTagName('tbody');
-  const tr = tbody[0].getElementsByTagName('tr');
+  const tbody = table.getElementsByTagName("tbody");
+  const tr = tbody[0].getElementsByTagName("tr");
 
   Array.from(tr).forEach((row, index) => {
-    row.addEventListener('click', function (e) {
-      if (lock && e.target.classList.contains('fa-trash')) {
+    row.addEventListener("click", function (e) {
+      if (lock && e.target.classList.contains("fa-trash")) {
         lock = false;
-        const row = e.target.closest('tr');
-        const values = row.querySelectorAll('td');
+        const row = e.target.closest("tr");
+        const values = row.querySelectorAll("td");
         console.log(values[0].textContent);
         console.log(values[1].textContent);
 
@@ -733,7 +731,7 @@ function handleAddAdditional() {
           0.3;
         console.log(annual_hrs_saved);
         switch (values[2].textContent) {
-          case 'Linux_4_cores':
+          case "Linux_4_cores":
             harness_cost_per_mins = 0.01;
             circleCI_cost_per_mins = 0.012;
             github_actions_cost_per_mins = 0.016;
@@ -741,35 +739,35 @@ function handleAddAdditional() {
 
             break;
 
-          case 'Linux_8_cores':
+          case "Linux_8_cores":
             harness_cost_per_mins = 0.025;
             circleCI_cost_per_mins = 0.06;
             github_actions_cost_per_mins = 0.032;
             harness_saving_percentage = 0.3;
 
             break;
-          case 'Linux_16_cores':
+          case "Linux_16_cores":
             harness_cost_per_mins = 0.05;
             circleCI_cost_per_mins = 0.012;
             github_actions_cost_per_mins = 0.064;
             harness_saving_percentage = 0.3;
 
             break;
-          case 'Linux_32_cores':
+          case "Linux_32_cores":
             harness_cost_per_mins = 0.1;
             circleCI_cost_per_mins = 0.18;
             github_actions_cost_per_mins = 0.128;
             harness_saving_percentage = 0.3;
 
             break;
-          case 'Windows_4_cores':
+          case "Windows_4_cores":
             harness_cost_per_mins = 0.04;
             circleCI_cost_per_mins = 0.072;
             github_actions_cost_per_mins = 0.064;
             harness_saving_percentage = 0.3;
 
             break;
-          case 'macOS_M1_6_cores':
+          case "macOS_M1_6_cores":
             harness_cost_per_mins = 0.3;
             circleCI_cost_per_mins = 0.09;
             github_actions_cost_per_mins = 0.08;
@@ -783,11 +781,11 @@ function handleAddAdditional() {
 
         let cost;
         switch (selected_provider) {
-          case 'circleCI':
+          case "circleCI":
             cost = Math.round(weekly_build_minutes * circleCI_cost_per_mins);
             break;
 
-          case 'github_actions':
+          case "github_actions":
             cost = Math.round(
               weekly_build_minutes * github_actions_cost_per_mins
             );
@@ -798,9 +796,9 @@ function handleAddAdditional() {
         }
 
         removeFromArray(cost, harness_cost, annual_hrs_saved);
-        if (row) {
-          row.remove();
-        }
+          if (row) {
+            row.remove();
+          }
       }
 
       if (tr.length == 1) {
@@ -810,12 +808,12 @@ function handleAddAdditional() {
   });
   lock = true;
 
-  const provider = document.getElementById('provider');
-  provider.addEventListener('input', function (e) {
-    const tbody = table.getElementsByTagName('tbody');
+  const provider = document.getElementById("provider");
+  provider.addEventListener("input", function (e) {
+    const tbody = table.getElementsByTagName("tbody");
     tbody[0].parentElement.remove();
   });
 }
 
-add_additional.addEventListener('click', handleAddAdditional);
-/* */
+add_additional.addEventListener("click", handleAddAdditional);
+*/
