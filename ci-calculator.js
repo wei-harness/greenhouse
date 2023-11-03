@@ -218,7 +218,7 @@ function calculate(
     annual_hour = (number_of_builds_per_week * avg_build_time * 52) / 60;
     saved_hour = 0.3 * annual_hour;
     const sum = annual_hours_saved.reduce((partialSum, a) => partialSum + a, 0);
-    hours.textContent = `${Math.round(sum + saved_hour)} `;
+    hours.textContent = `${format(Math.round(sum + saved_hour))} `;
 
     if (other_provider) {
       const provider = other_provider.getElementsByTagName('h3')[0];
@@ -230,10 +230,10 @@ function calculate(
       );
       if (selected_provider === 'circleCI') {
         provider.textContent = 'With CircleCI';
-        cost.textContent = `$ ${circleCI_cost + sum} `;
+        cost.textContent = `$ ${format(circleCI_cost + sum)} `;
       } else {
         provider.textContent = 'With Git Actions';
-        cost.textContent = `$ ${github_actions_cost + sum} `;
+        cost.textContent = `$ ${format(github_actions_cost + sum)} `;
       }
     }
     if (harness_provider) {
@@ -243,7 +243,7 @@ function calculate(
         (partialSum, a) => partialSum + a,
         0
       );
-      cost.textContent = ` $ ${harness_cost + sum} `;
+      cost.textContent = ` $ ${format(harness_cost + sum)} `;
     }
   }
 }
