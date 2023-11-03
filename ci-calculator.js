@@ -2,6 +2,8 @@
 const numInputs = document.querySelectorAll('input');
 const Select = document.querySelectorAll('select');
 
+const add_additional = document.getElementById('add_additional');
+
 let number_of_builds_per_week = 100;
 let avg_build_time = 15;
 let selected_provider = 'circleCI';
@@ -253,7 +255,7 @@ add_additional.addEventListener('click', addToArray);
 
 /* ----- */
 
-const add_additional = document.getElementById('add_additional');
+// const add_additional = document.getElementById('add_additional');
 const tableContainer = document.querySelector('.table');
 let lock = true;
 
