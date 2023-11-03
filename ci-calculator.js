@@ -462,6 +462,7 @@ function handleAddAdditional() {
 
 add_additional.addEventListener('click', handleAddAdditional);
 
+main();
 /* ======  */
 
 /*
