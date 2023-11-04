@@ -188,6 +188,19 @@ function calculate(
   const hour_saved = document.getElementById('hour_saved');
   let table = document.querySelector('table');
 
+  let provider_text = '';
+  let cost_value = 0;
+  if (selected_provider === 'circleCI') {
+    provider_text = 'With CircleCI';
+    cost_value = circleCI_cost;
+  } else if (selected_provider === 'github_actions') {
+    provider_text = 'With GitHub Actions';
+    cost_value = github_actions_cost;
+  } else {
+    provider_text = 'With current provider';
+    cost_value = other_provider_cost;
+  }
+
   if (!table) {
     annual_hour = (number_of_builds_per_week * avg_build_time * 52) / 60;
     saved_hour = harness_saving_percentage * annual_hour;
@@ -197,21 +210,19 @@ function calculate(
     if (other_provider) {
       const provider = other_provider.getElementsByTagName('h3')[0];
       const cost = other_provider.getElementsByTagName('h2')[0];
-      if (selected_provider === 'circleCI') {
-        provider.textContent = 'With CircleCI';
-        cost.textContent = `$ ${format(circleCI_cost)} `;
-      } else if (selected_provider === 'github_actions') {
-        provider.textContent = 'With Git Actions';
-        cost.textContent = `$ ${format(github_actions_cost)} `;
-      } else {
-        provider.textContent = 'With current provider';
-        cost.textContent = `$ ${format(other_provider_cost)} `;
-      }
+      provider.textContent = provider_text;
+      cost.textContent = `$ ${format(cost_value)} `;
     }
 
     if (harness_provider) {
       const cost = harness_provider.getElementsByTagName('h2')[0];
       cost.textContent = ` $ ${format(harness_cost)} `;
+      const saved_percentage = harness_provider.getElementsByTagName('h6')[0];
+      if (saved_percentage) {
+        saved_percentage.textContent = ` $ ${format(
+          (cost_value - harness_cost) / cost_value
+        )} `;
+      }
     }
   } else {
     const tbody = table.getElementsByTagName('tbody');
@@ -228,6 +239,7 @@ function calculate(
     );
     hours.textContent = `${format(Math.round(sum + saved_hour))} `;
 
+    const cost_value_sum = cost_value + sum;
     if (other_provider) {
       const provider = other_provider.getElementsByTagName('h3')[0];
       const cost = other_provider.getElementsByTagName('h2')[0];
@@ -236,13 +248,8 @@ function calculate(
         (partialSum, a) => partialSum + a,
         0
       );
-      if (selected_provider === 'circleCI') {
-        provider.textContent = 'With CircleCI';
-        cost.textContent = `$ ${format(circleCI_cost + sum)} `;
-      } else {
-        provider.textContent = 'With GitHub Actions';
-        cost.textContent = `$ ${format(github_actions_cost + sum)} `;
-      }
+      provider.textContent = provider_text;
+      cost.textContent = `$ ${format(cost_value_sum)} `;
     }
     if (harness_provider) {
       const cost = harness_provider.getElementsByTagName('h2')[0];
@@ -251,7 +258,15 @@ function calculate(
         (partialSum, a) => partialSum + a,
         0
       );
-      cost.textContent = ` $ ${format(harness_cost + sum)} `;
+      const harness_cost_sum = harness_cost + sum;
+      cost.textContent = ` $ ${format(harness_cost_sum)} `;
+
+      const saved_percentage = harness_provider.getElementsByTagName('h6')[0];
+      if (saved_percentage) {
+        saved_percentage.textContent = ` $ ${format(
+          (cost_value_sum - harness_cost_sum) / cost_value_sum
+        )} `;
+      }
     }
   }
 }
