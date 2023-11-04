@@ -26,6 +26,7 @@ let harness_saving_percentage;
 let annual_cost_with_other_provider = [];
 let annual_cost_with_harness = [];
 let annual_hours_saved = [];
+let annual_hours_with_other_provider = [];
 
 let annual_hour = 0;
 let saved_hour = 0;
@@ -220,6 +221,11 @@ function calculate(
     annual_hour = (number_of_builds_per_week * avg_build_time * 52) / 60;
     saved_hour = harness_saving_percentage * annual_hour; // 0.3 * annual_hour;
     const sum = annual_hours_saved.reduce((partialSum, a) => partialSum + a, 0);
+
+    const sum_with_provider = annual_hours_with_other_provider.reduce(
+      (partialSum, a) => partialSum + a,
+      0
+    );
     hours.textContent = `${format(Math.round(sum + saved_hour))} `;
 
     if (other_provider) {
@@ -234,7 +240,7 @@ function calculate(
         provider.textContent = 'With CircleCI';
         cost.textContent = `$ ${format(circleCI_cost + sum)} `;
       } else {
-        provider.textContent = 'With Git Actions';
+        provider.textContent = 'With GitHub Actions';
         cost.textContent = `$ ${format(github_actions_cost + sum)} `;
       }
     }
@@ -265,6 +271,7 @@ function addToArray() {
   const saved_hours = harness_saving_percentage * annual_hours; // 0.3 * annual_hour;
   // const saved_hours = 0.3 * (weekly_build_minutes / 60);
   annual_hours_saved.push(saved_hours);
+  annual_hours_with_other_provider.push(annual_hours);
 
   annual_cost_with_harness.push(harness_cost);
   // circleCI_cost
@@ -276,10 +283,12 @@ function addToArray() {
     annual_hours_saved,
     annual_cost_with_harness,
     annual_cost_with_other_provider,
+    annual_hours_with_other_provider,
   });
 
   main();
 }
+// function not in use
 function removeFromArray(other, harness, annual_hrs_saved) {
   removeFirst = function (val, array) {
     array.splice(array.indexOf(val), 1);
@@ -383,6 +392,7 @@ function handleAddAdditional() {
           annual_cost_with_other_provider.splice(arrayIndex, 1);
           annual_cost_with_harness.splice(arrayIndex, 1);
           annual_hours_saved.splice(arrayIndex, 1);
+          annual_hours_with_other_provider.splice(arrayIndex, 1);
 
           main();
         }
