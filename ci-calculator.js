@@ -332,9 +332,9 @@ function removeFromArray(other, harness, annual_hrs_saved) {
 
 //clear trashcan //
 
-function clearBuildInputs() {
+function clearBuildInputs(skipVisibilityCheck) {
   const elem_inputs = document.getElementsByClassName('inputs')[0];
-  if (elem_inputs) {
+  if (elem_inputs && !skipVisibilityCheck) {
     const elem_inputs_visible = elem_inputs.style.display !== 'none';
     if (elem_inputs_visible) {
       elem_inputs.style.display = 'none';
@@ -371,12 +371,13 @@ setInterval(function () {
     lock = true;
   }
 }, 1000);
+
 function handleAddAdditional() {
   const elem_inputs = document.getElementsByClassName('inputs')[0];
   if (elem_inputs) {
     const elem_inputs_invisible = elem_inputs.style.display === 'none';
     if (elem_inputs_invisible) {
-      elem_inputs.style.display = 'block';
+      elem_inputs.style.display = '';
       return;
     }
   }
@@ -547,7 +548,7 @@ function handleAddAdditional() {
   });
   */
 
-  clearBuildInputs();
+  clearBuildInputs(true);
 }
 
 add_additional.addEventListener('click', handleAddAdditional);
