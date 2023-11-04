@@ -367,13 +367,23 @@ function handleAddAdditional() {
       if (lock && e.target.classList.contains('fa-trash')) {
         lock = false;
         const row = e.target.closest('tr');
-        const arrayIndex = Array.from(tr).indexOf(row);
+        const arrayIndex = Array.from(tr).indexOf(row) - 1;
         console.log({ row, index, arrayIndex });
         if (arrayIndex > -1) {
-          console.log('1: ', annual_cost_with_other_provider[arrayIndex]);
-          console.log('2: ', annual_cost_with_harness[arrayIndex]);
-          console.log('3: ', annual_hours_saved[arrayIndex]);
+          console.log(
+            'annual_cost_with_other_provider: ',
+            annual_cost_with_other_provider[arrayIndex]
+          );
+          console.log(
+            'annual_cost_with_harness: ',
+            annual_cost_with_harness[arrayIndex]
+          );
+          console.log('annual_hours_saved: ', annual_hours_saved[arrayIndex]);
+          annual_cost_with_other_provider.splice(arrayIndex, 1);
+          annual_cost_with_harness.splice(arrayIndex, 1);
+          annual_hours_saved.splice(arrayIndex, 1);
         }
+        /* The flowing approach has flows, say when 2 rows have same cost...
         const values = row.querySelectorAll('td');
         console.log(
           'handleAddAdditional > values[0].textContent ',
@@ -457,6 +467,7 @@ function handleAddAdditional() {
         }
 
         removeFromArray(cost, harness_cost, annual_hrs_saved);
+        */
         if (row) {
           row.remove();
         }
