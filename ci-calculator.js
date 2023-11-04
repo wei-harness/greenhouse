@@ -261,8 +261,8 @@ function format(num) {
 }
 
 function addToArray() {
-  annual_hour = (number_of_builds_per_week * avg_build_time * 52) / 60;
-  saved_hour = harness_saving_percentage * annual_hour; // 0.3 * annual_hour;
+  const annual_hours = (number_of_builds_per_week * avg_build_time * 52) / 60;
+  const saved_hours = harness_saving_percentage * annual_hours; // 0.3 * annual_hour;
   // const saved_hours = 0.3 * (weekly_build_minutes / 60);
   annual_hours_saved.push(saved_hours);
 
