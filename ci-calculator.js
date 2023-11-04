@@ -462,11 +462,13 @@ function handleAddAdditional() {
   });
   lock = true;
 
+  /* Nofar: if the users switches providers lets not clean up the already defined machines types
   const provider = document.getElementById('provider');
   provider.addEventListener('input', function (e) {
     const tbody = table.getElementsByTagName('tbody');
     tbody[0].parentElement.remove();
   });
+  */
 
   clearBuildInputs();
 }
