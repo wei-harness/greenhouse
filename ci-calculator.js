@@ -298,7 +298,7 @@ function formatPercentage(num) {
   if (isNaN(num)) {
     return 0;
   } else {
-    return `${Math.round(num * 10000) / 100}%`;
+    return `${Math.round(num * 100)}%`;
   }
 }
 
