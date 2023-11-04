@@ -209,8 +209,8 @@ function calculate(
 
     const hours_faster = hour_saved.getElementsByTagName('h6')[0];
     if (hours_faster) {
-      hours_faster.textContent = `${format(
-        Math.round(harness_saving_percentage)
+      hours_faster.textContent = `${formatPercentage(
+        harness_saving_percentage
       )} `;
     }
     console.log('calculate > hours.textContent: ', hours.textContent);
@@ -226,7 +226,7 @@ function calculate(
       cost.textContent = ` $ ${format(harness_cost)} `;
       const saved_percentage = harness_provider.getElementsByTagName('h6')[0];
       if (saved_percentage) {
-        saved_percentage.textContent = ` $ ${format(
+        saved_percentage.textContent = ` $ ${formatPercentage(
           (cost_value - harness_cost) / cost_value
         )} `;
       }
@@ -247,8 +247,8 @@ function calculate(
         (partialSum, a) => partialSum + a,
         0
       );
-      hours_faster.textContent = `${format(
-        Math.round((sum + saved_hour) / (sum_hours_with_provider + annual_hour))
+      hours_faster.textContent = `${formatPercentage(
+        (sum + saved_hour) / (sum_hours_with_provider + annual_hour)
       )} `;
     }
 
@@ -276,7 +276,7 @@ function calculate(
 
       const saved_percentage = harness_provider.getElementsByTagName('h6')[0];
       if (saved_percentage) {
-        saved_percentage.textContent = ` $ ${format(
+        saved_percentage.textContent = ` $ ${formatPercentage(
           (cost_value_sum - harness_cost_sum) / cost_value_sum
         )} `;
       }
@@ -291,6 +291,14 @@ function format(num) {
   } else {
     // Display in the format "1.234M"
     return (num / 1000000).toFixed(3) + 'M';
+  }
+}
+
+function formatPercentage(num) {
+  if (isNaN(num)) {
+    return 0;
+  } else {
+    return `${Math.round(a * 10000) / 100}%`;
   }
 }
 
