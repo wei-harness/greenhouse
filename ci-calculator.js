@@ -428,7 +428,7 @@ function handleAddAdditional() {
 
           main();
         }
-        /* The flowing approach has flows, say when 2 rows have same cost/saved_hours/...
+        /* The former approach has flaws, say when 2 rows have same cost/saved_hours/...
         const values = row.querySelectorAll('td');
 
         const annual_hrs_saved =
