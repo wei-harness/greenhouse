@@ -206,6 +206,13 @@ function calculate(
     saved_hour = harness_saving_percentage * annual_hour;
     const hours = hour_saved.getElementsByTagName('h2')[0];
     hours.textContent = `${format(Math.round(saved_hour))} `;
+
+    const hours_faster = hour_saved.getElementsByTagName('h6')[0];
+    if (hours_faster) {
+      hours_faster.textContent = `${format(
+        Math.round(harness_saving_percentage)
+      )} `;
+    }
     console.log('calculate > hours.textContent: ', hours.textContent);
     if (other_provider) {
       const provider = other_provider.getElementsByTagName('h3')[0];
@@ -233,11 +240,17 @@ function calculate(
     saved_hour = harness_saving_percentage * annual_hour; // 0.3 * annual_hour;
     const sum = annual_hours_saved.reduce((partialSum, a) => partialSum + a, 0);
 
-    const sum_with_provider = annual_hours_with_other_provider.reduce(
-      (partialSum, a) => partialSum + a,
-      0
-    );
     hours.textContent = `${format(Math.round(sum + saved_hour))} `;
+    const hours_faster = hour_saved.getElementsByTagName('h6')[0];
+    if (hours_faster) {
+      const sum_hours_with_provider = annual_hours_with_other_provider.reduce(
+        (partialSum, a) => partialSum + a,
+        0
+      );
+      hours_faster.textContent = `${format(
+        Math.round((sum + saved_hour) / (sum_hours_with_provider + annual_hour))
+      )} `;
+    }
 
     const provider_cost_sum = annual_cost_with_other_provider.reduce(
       (partialSum, a) => partialSum + a,
