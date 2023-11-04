@@ -345,7 +345,7 @@ function clearBuildInputs() {
   main();
 }
 
-add_additional.addEventListener('click', addToArray);
+// add_additional.addEventListener('click', addToArray); // moved into handleAddAdditional
 
 /* ---- */
 
@@ -364,8 +364,12 @@ function handleAddAdditional() {
     const elem_inputs_invisible = elem_inputs.style.display === 'none';
     if (elem_inputs_invisible) {
       elem_inputs.style.display = 'block';
+      return;
     }
   }
+
+  addToArray();
+
   // lock = true;
   let table = document.querySelector('table');
 
