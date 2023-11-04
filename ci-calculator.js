@@ -320,6 +320,13 @@ function removeFromArray(other, harness, annual_hrs_saved) {
 //clear trashcan //
 
 function clearBuildInputs() {
+  const elem_inputs = document.getElementsByClassName('inputs')[0];
+  if (elem_inputs) {
+    const elem_inputs_visible = elem_inputs.style.display !== 'none';
+    if (elem_inputs_visible) {
+      elem_inputs.style.display = 'none';
+    }
+  }
   var weeklyBuildInput = document.getElementById('weekly_build');
   var weeklyBuildMinutesInput = document.getElementById('weekly_build_minutes');
   var machineTypeInput = document.getElementById('machine_type');
@@ -352,6 +359,13 @@ setInterval(function () {
   }
 }, 1000);
 function handleAddAdditional() {
+  const elem_inputs = document.getElementsByClassName('inputs')[0];
+  if (elem_inputs) {
+    const elem_inputs_invisible = elem_inputs.style.display === 'none';
+    if (elem_inputs_invisible) {
+      elem_inputs.style.display = 'block';
+    }
+  }
   // lock = true;
   let table = document.querySelector('table');
 
