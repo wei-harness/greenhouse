@@ -382,6 +382,8 @@ function handleAddAdditional() {
           annual_cost_with_other_provider.splice(arrayIndex, 1);
           annual_cost_with_harness.splice(arrayIndex, 1);
           annual_hours_saved.splice(arrayIndex, 1);
+
+          main();
         }
         /* The flowing approach has flows, say when 2 rows have same cost...
         const values = row.querySelectorAll('td');
