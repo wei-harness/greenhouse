@@ -367,8 +367,13 @@ function handleAddAdditional() {
       if (lock && e.target.classList.contains('fa-trash')) {
         lock = false;
         const row = e.target.closest('tr');
-        const arrayIndex = index - 1;
+        const arrayIndex = Array.from(tr).indexOf(row);
         console.log({ row, index, arrayIndex });
+        if (arrayIndex > -1) {
+          console.log('1: ', annual_cost_with_other_provider[arrayIndex]);
+          console.log('2: ', annual_cost_with_harness[arrayIndex]);
+          console.log('3: ', annual_hours_saved[arrayIndex]);
+        }
         const values = row.querySelectorAll('td');
         console.log(
           'handleAddAdditional > values[0].textContent ',
