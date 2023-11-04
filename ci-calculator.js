@@ -211,7 +211,7 @@ function calculate(
     if (hours_faster) {
       hours_faster.textContent = `${formatPercentage(
         harness_saving_percentage
-      )} `;
+      )} faster`;
     }
     console.log('calculate > hours.textContent: ', hours.textContent);
     if (other_provider) {
@@ -226,9 +226,9 @@ function calculate(
       cost.textContent = ` $ ${format(harness_cost)} `;
       const saved_percentage = harness_provider.getElementsByTagName('h6')[0];
       if (saved_percentage) {
-        saved_percentage.textContent = ` $ ${formatPercentage(
+        saved_percentage.textContent = `Save ${formatPercentage(
           (cost_value - harness_cost) / cost_value
-        )} `;
+        )} per year`;
       }
     }
   } else {
@@ -249,7 +249,7 @@ function calculate(
       );
       hours_faster.textContent = `${formatPercentage(
         (sum + saved_hour) / (sum_hours_with_provider + annual_hour)
-      )} `;
+      )} faster`;
     }
 
     const provider_cost_sum = annual_cost_with_other_provider.reduce(
@@ -276,9 +276,9 @@ function calculate(
 
       const saved_percentage = harness_provider.getElementsByTagName('h6')[0];
       if (saved_percentage) {
-        saved_percentage.textContent = ` $ ${formatPercentage(
+        saved_percentage.textContent = `Save ${formatPercentage(
           (cost_value_sum - harness_cost_sum) / cost_value_sum
-        )} `;
+        )} per year`;
       }
     }
   }
