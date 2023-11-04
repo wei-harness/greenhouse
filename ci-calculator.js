@@ -239,15 +239,15 @@ function calculate(
     );
     hours.textContent = `${format(Math.round(sum + saved_hour))} `;
 
-    const cost_value_sum = cost_value + sum;
+    const provider_cost_sum = annual_cost_with_other_provider.reduce(
+      (partialSum, a) => partialSum + a,
+      0
+    );
+    const cost_value_sum = cost_value + provider_cost_sum;
     if (other_provider) {
       const provider = other_provider.getElementsByTagName('h3')[0];
       const cost = other_provider.getElementsByTagName('h2')[0];
 
-      const sum = annual_cost_with_other_provider.reduce(
-        (partialSum, a) => partialSum + a,
-        0
-      );
       provider.textContent = provider_text;
       cost.textContent = `$ ${format(cost_value_sum)} `;
     }
