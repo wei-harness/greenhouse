@@ -269,7 +269,11 @@ function addToArray() {
     ? annual_cost_with_other_provider.push(circleCI_cost)
     : annual_cost_with_other_provider.push(github_actions_cost);
 
-  console.log('addToArray: ', { annual_hours_saved });
+  console.log('addToArray: ', {
+    annual_hours_saved,
+    annual_cost_with_harness,
+    annual_cost_with_other_provider,
+  });
 
   main();
 }
