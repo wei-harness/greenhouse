@@ -367,6 +367,8 @@ function handleAddAdditional() {
       if (lock && e.target.classList.contains('fa-trash')) {
         lock = false;
         const row = e.target.closest('tr');
+        const arrayIndex = index - 1;
+        console.log({ row, index, arrayIndex });
         const values = row.querySelectorAll('td');
         console.log(
           'handleAddAdditional > values[0].textContent ',
