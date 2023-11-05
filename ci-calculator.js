@@ -34,9 +34,10 @@ let saved_hour = 0;
 // comma
 function updateValue(event) {
   let formattedValue = 0;
-  const input = event.target.value.replace(/\D/g, '');
+  const input = event.target;
+  const inputValue = input.value.replace(/\D/g, '');
   if (!isNaN(input)) {
-    formattedValue = new Intl.NumberFormat().format(parseInt(input));
+    formattedValue = new Intl.NumberFormat().format(parseInt(inputValue));
   }
   input.value = formattedValue;
 }
