@@ -33,10 +33,11 @@ let saved_hour = 0;
 
 // comma
 function updateValue(event) {
-  const input = event.target;
-  const formattedValue = new Intl.NumberFormat().format(
-    parseInt(input.value.replace(/,/g, ''))
-  );
+  const input = event.target.value.replace(/,/g, '');
+  if (isNaN(input)) {
+    return 0;
+  }
+  const formattedValue = new Intl.NumberFormat().format(parseInt(input));
   input.value = formattedValue;
 }
 
@@ -279,6 +280,16 @@ function calculate(
 }
 
 function format(num) {
+  const strNum = num.toString();
+  const lclStrNum = num.toLocaleString();
+
+  // If the number has fewer than 9 digits, return it as is
+  if (strNum.length < 9) return lclStrNum;
+
+  // Abbreviate billions and trillions with two decimal points
+  if (num < 1000000000000) return (num / 1000000000).toFixed(2) + 'B';
+  return (num / 1000000000000).toFixed(2) + 'T';
+  /* former implementation
   if (num < 1000000) {
     // Display the full number with commas
     return num.toLocaleString();
@@ -286,6 +297,7 @@ function format(num) {
     // Display in the format "1.234M"
     return (num / 1000000).toFixed(3) + 'M';
   }
+  */
 }
 
 function formatPercentage(num) {
