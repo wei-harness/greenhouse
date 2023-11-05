@@ -36,7 +36,7 @@ function updateValue(event) {
   let formattedValue = 0;
   const input = event.target;
   const inputValue = input.value.replace(/\D/g, '');
-  if (!isNaN(input)) {
+  if (!isNaN(inputValue)) {
     formattedValue = new Intl.NumberFormat().format(parseInt(inputValue));
   }
   input.value = formattedValue;
