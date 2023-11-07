@@ -1,5 +1,5 @@
 /* CI calculator */
-console.log("rohan Test 1");
+
 const numInputs = document.querySelectorAll('input');
 const Select = document.querySelectorAll('select');
 const add_additional = document.getElementById('add_additional');
