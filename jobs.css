@@ -1,0 +1,148 @@
+body {
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(172.83deg, #000000 4.49%, #000000 108.22%);
+  color: white;
+}
+.container {
+  background: linear-gradient(172.83deg, #000000 4.49%, #000000 108.22%);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+.filter {
+  padding: 20px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.filter > select {
+  /* width: 227px; */
+  height: 50px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: 0px;
+  text-align: left;
+  border-radius: 8px;
+  border: 2px solid white;
+
+  background: transparent;
+  padding: 0 20px 0 20px;
+  color: rgba(146, 147, 171, 1);
+}
+
+.container > h1 {
+  width: 444px;
+  height: 68px;
+
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 68px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: rgba(255, 255, 255, 1);
+  margin: auto;
+}
+
+.main {
+  width: 1000px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 40px;
+}
+
+.card {
+  position: relative;
+  max-width: 483px;
+  height: 200px;
+  /* padding: 50px; */
+  border-radius: 12px;
+  border: 0.5px;
+  background-color: linear-gradient(
+      315deg,
+      rgba(244, 244, 244, 0.1) 0%,
+      rgba(217, 217, 217, 0) 100%
+    ),
+    linear-gradient(0deg, #ffffff, #ffffff);
+  border: 1px solid #ffffff;
+  filter: drp-shadow(0px 0px 1px 0px rgba(40, 41, 61, 0.04));
+  filter: drp-shadow(0px 4px 4px 0px rgba(0, 0, 0, 0.25));
+}
+.card > div {
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card > div > .department {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 16px;
+  letter-spacing: 0px;
+  text-align: left;
+}
+.card > div > .title {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 26px;
+  letter-spacing: 0px;
+  text-align: left;
+}
+.card > div > .location {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 16px;
+  letter-spacing: 0px;
+  text-align: left;
+}
+.card > a > button {
+  position: absolute;
+  bottom: 30;
+  right: 30;
+  width: 85px;
+  height: 32px;
+  padding: 8px 12px 8px 16px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  color: white;
+  background-color: rgba(2, 120, 213, 1);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 16px;
+  letter-spacing: 0px;
+  text-align: center;
+  border: 0px;
+}
+.card > a > button :hover {
+  cursor: pointer;
+  background-color: rgb(4, 95, 164);
+}
+
+.view-more {
+  background-color: transparent;
+  width: 255px;
+  height: 56px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 26px;
+  letter-spacing: 0.04em;
+  text-align: center;
+  color: rgba(255, 255, 255, 1);
+  border: 1px solid rgba(255, 255, 255, 1);
+  padding: 15px 20px 15px 20px;
+  border-radius: 10px;
+  gap: 20px;
+  cursor: pointer;
+  display: none;
+}
