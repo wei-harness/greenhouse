@@ -1,3 +1,19 @@
+html,
+body {
+  margin: 0;
+  font-family: Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 14px;
+}
+
+#wrapper {
+  max-width: 1200px;
+  padding: 0px 40px;
+}
+
+#app_body {
+  max-width: unset;
+}
+
 div#application {
   padding: 30px 30px 30px 30px;
   /* background-color: #bbb; */
