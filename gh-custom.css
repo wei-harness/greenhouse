@@ -1,0 +1,5 @@
+div#application {
+  padding: 30px 30px 30px 30px;
+  background-color: #bbb;
+  max-width: unset;
+}
