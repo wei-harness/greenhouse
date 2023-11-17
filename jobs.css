@@ -105,8 +105,8 @@ body {
 }
 .card > a > button {
   position: absolute;
-  bottom: 30;
-  right: 30;
+  bottom: 30px;
+  right: 30px;
   width: 85px;
   height: 32px;
   padding: 8px 12px 8px 16px;
@@ -131,7 +131,7 @@ body {
 
 .view-more {
   background-color: transparent;
-  width: 255px;
+  /* width: 255px; */
   height: 56px;
   font-size: 20px;
   font-weight: 700;
