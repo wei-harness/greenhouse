@@ -1,0 +1,511 @@
+/* Import a custom font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600&display=swap');
+
+/* Define custom CSS variables for colors */
+:root {
+  /* Primary brand colors - can be customized for your brand */
+  --primary-brand-color: rgba(2, 120, 213, 1);
+  --light-primary-brand-color: rgba(53, 116, 214, 0.1);
+
+  /* Default colors - not recommended to change */
+  --full-page-background-color: #fafafa;
+  --application-background-color: #fff;
+  --footer-color: #f3f3f3;
+  --main-text-color: #222222;
+  --sub-header-color: #666;
+  --link-color: #3574d6;
+  --field-border-color: #e1e1e1;
+}
+
+/* Set the background color and font for the entire page */
+body {
+  background-color: var(--full-page-background-color);
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(172.83deg, #000000 4.49%, #000000 108.22%);
+}
+
+/* Set the background color, width, and padding for the main content container */
+body #wrapper {
+  background: linear-gradient(172.83deg, #000000 4.49%, #000000 108.22%);
+  color: white;
+  min-height: 100vh;
+  max-width: 800px;
+  padding: 0 48px;
+}
+
+.company-name,
+a,
+.required-fields,
+.content-conclusion {
+  display: none;
+}
+
+/* Style the select boxes */
+#main .select2-choice {
+  height: 35px;
+}
+
+#main .select2-chosen {
+  line-height: 35px;
+}
+
+#main .select2-arrow {
+  padding-top: 4px;
+}
+
+/* Style the filter labels */
+#main .filter-label {
+  color: var(--sub-header-color);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* Style the job locations */
+#main .location {
+  width: max-content;
+  padding: 15px 20px 15px 20px;
+  border-radius: 10px;
+  border: 2px solid #0c699d;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19px;
+  letter-spacing: 0em;
+  color: rgba(255, 255, 255, 1);
+}
+
+/* Style the job board page */
+#main > h1:not(.app-title) {
+  /* Hide the company name in favor of a Logo that includes it */
+  display: none;
+}
+
+/* Style the board title */
+#board_title {
+  margin: 0 0 16px 0;
+  font-size: 22px;
+  line-height: 36px;
+  font-weight: 400;
+}
+
+/* Add margin for sections */
+section {
+  margin-top: 16px;
+}
+
+/* Add margin for section headings */
+section > h3 {
+  margin-top: 32px;
+}
+
+/* Style the logo container */
+#logo {
+  display: inline-block;
+}
+
+/* Style the main content container */
+body #content {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+/* Style the main section headings */
+#main section h3 {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 26px;
+  margin-bottom: 0;
+}
+
+/* Style the main section job locations */
+#main section .location {
+  display: block;
+  margin-top: -24px;
+}
+
+/* Style the job openings container */
+#main section .opening {
+  padding-top: 10px;
+  margin-bottom: 10px;
+}
+
+/* Style the job openings links */
+section .opening a {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  color: var(--main-text-color);
+}
+
+/* Style the clickable area and background area of the job opening links */
+section .opening a {
+  display: block;
+  height: 44px;
+  width: 100%;
+  margin-bottom: -20px;
+  padding-bottom: 0;
+  margin-left: -20px;
+  padding-left: 20px;
+  padding-top: 12px;
+  margin-top: -12px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Style the job opening links when hovered */
+section .opening a:hover {
+  background-color: var(--light-primary-brand-color);
+  border-radius: 3px;
+  color: var(--main-text-color);
+}
+
+/* Style the footer of the page */
+body #footer {
+  border: none;
+  background-color: var(--footer-color);
+  height: 60px;
+  margin-top: -80px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+/* Style the privacy policy text in the footer */
+body #footer .privacy-policy {
+  line-height: 19px;
+}
+
+/* Style the image in the footer */
+body #footer img {
+  width: 90px;
+}
+
+/* Style the filter count element */
+h3#filter-count {
+  margin-top: 30px;
+  margin-bottom: 0;
+}
+
+/* Job Post Page */
+
+/* Style the main app body container */
+div#main div#app_body {
+  padding-left: 0 !important;
+  padding-right: 0;
+}
+
+/* Style the header section within the main app body */
+div#app_body #header {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Style the apply button within the header */
+div#app_body #header #apply_button {
+  order: 3;
+  margin-top: 37px;
+}
+
+/* Hide the company name within the header */
+div#app_body #header .company-name {
+  display: none;
+}
+
+/* Style the header elements, defining their display order */
+div#app_body #header > a {
+  order: 1;
+}
+
+/* Set the order of the app-title element within the header */
+div#app_body #header .app-title {
+  order: 2;
+  color: white;
+  font-size: 72px;
+  font-weight: 800;
+  line-height: 93px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+h3,
+strong {
+  color: #ffffff;
+}
+
+/* Set the order of the location element within the header and add a top margin */
+div#app_body #header .location {
+  order: 4;
+  margin-top: 2px;
+}
+
+/* Style the heading element in the application form */
+div#main #application_form h2.heading {
+  color: var(--main-text-color);
+  font-weight: 400;
+}
+
+/* Style the app title within the main app body */
+/* div#app_body .app-title {
+  font-weight: 400;
+  font-size: 28px;
+} */
+
+/* Style the apply button within the header */
+div#app_body div#header #apply_button {
+  top: auto;
+  background-color: var(--primary-brand-color);
+  padding-top: 8px;
+  padding-bottom: 8px;
+  font-weight: 600;
+}
+
+/* Style the submit application button */
+div#submit_buttons input#submit_app {
+  background: rgba(2, 120, 213, 1);
+  width: 187px;
+  height: 48px;
+  padding: 12px 20px 12px 20px;
+  border-radius: 4px;
+  gap: 4px;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0px;
+  text-align: center;
+  margin-right: 50px;
+}
+
+/* Style the main app body container */
+div#app_body {
+  margin: auto;
+  width: 890px;
+  color: white;
+}
+
+/* Add padding to the bottom of the content container */
+div#content {
+  padding-bottom: 16px;
+}
+
+/* Hide the last horizontal rule in the application container */
+div#application hr:nth-last-of-type(1) {
+  display: none;
+}
+
+/* Style the application container */
+div#application {
+  /* margin-top: 30px; */
+  width: 963px;
+  border: 1px solid white;
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(172.83deg, #000000 4.49%, #000000 108.22%);
+  color: rgba(176, 177, 195, 1);
+  border-radius: 12px;
+  color: white;
+}
+
+/* Style the main and custom fields in the application form */
+div#main_fields,
+div#custom_fields {
+  font-weight: 400;
+  line-height: 11px;
+}
+
+/* Style the field labels in the application form */
+div#application div.field label {
+  display: block;
+  float: none;
+  text-align: left;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19px;
+  letter-spacing: 0em;
+  color: rgba(217, 218, 229, 1);
+  margin-bottom: 8px;
+}
+
+/* Style the asterisk symbol in the field labels */
+div#application div.field label span.asterisk {
+  font-size: 12px;
+  color: white;
+}
+
+/* Remove left margin from textarea elements in main fields */
+div#application #main_fields div.field textarea {
+  margin-left: 0;
+}
+
+/* Style text input fields in the application form */
+div#application div.field input[type='text'] {
+  border: solid 1px var(--field-border-color);
+  height: 25px;
+  padding-left: 12px;
+  width: 455px;
+}
+
+/* Adjust the width of text input fields on smaller screens */
+@media (max-width: 640px) {
+  div#application div.field input[type='text'] {
+    width: 100%;
+  }
+}
+
+/* Style the input fields with "MM" and "YYYY" placeholders */
+div#application div.field input[placeholder='MM'] {
+  padding-left: 10px;
+}
+
+div#application div.field input[placeholder='YYYY'] {
+  padding-left: 7px;
+}
+
+/* Remove the float property from legend elements */
+div#application legend {
+  float: none;
+  margin: 0;
+  /* margin-bottom: -10px; */
+  padding: 0;
+}
+
+/* Style the links within the link-container */
+div.link-container a {
+  color: var(--link-color);
+  font-size: 14px;
+}
+
+/* Remove left margin from the "add education" link in the application */
+div#application a#add_education {
+  margin-left: 0;
+}
+
+/* Add bottom margin to the field container */
+div#field {
+  margin-bottom: 10px;
+}
+
+/* Remove left padding from the field error message */
+#main_fields div.field div.field-error-msg {
+  padding-left: 0;
+}
+
+/* Add top padding to the message container */
+div.field div.msg-container {
+  padding-top: 5px;
+}
+
+/* Remove top margin from the select2-container within the application form */
+#application .field .select2-container {
+  margin-top: 0;
+}
+
+/* Display the "locate me" link as a block element */
+div#application div.field a.locate-me {
+  display: block;
+}
+
+/* Style the textarea fields in the application form */
+div#application div.field textarea {
+  border-color: var(--field-border-color);
+  width: 455px;
+}
+
+/* Adjust the width of textarea fields on smaller screens */
+@media (max-width: 640px) {
+  div#application div.field textarea {
+    width: 100%;
+  }
+}
+
+/* Set the width of the select2-container in the application form */
+div#application div.field div.select2-container {
+  width: 455px !important;
+}
+
+/* Adjust the width of the select2-container on smaller screens */
+@media (max-width: 640px) {
+  div#application div.field div.select2-container {
+    width: 100% !important;
+  }
+}
+
+/* Hide the S3 upload form */
+div.s3-upload-form {
+  display: none;
+}
+
+/* Style the "view more" element on the confirmation page */
+#main #view-more {
+  text-align: left;
+  padding-top: 0;
+}
+
+/* Style the links within strong elements on the main container */
+#main strong > a {
+  color: var(--link-color);
+  font-weight: 400;
+}
+
+.field label {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19px;
+  letter-spacing: 0em;
+  color: rgba(217, 218, 229, 1);
+}
+
+.field input[type='text'] {
+  height: 32px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 1);
+}
+.link-container > button {
+  background: linear-gradient(172.83deg, #000000 4.49%, #000000 108.22%);
+  cursor: pointer;
+  color: yellow;
+}
+.attach-or-paste .unstyled-button.link-button {
+  font-family: Inter;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: rgba(2, 120, 213, 1);
+}
+
+.field select {
+  width: 262px;
+  height: 48px;
+  padding: 12px 16px 12px 20px;
+  border-radius: 4px;
+  border: 1px;
+  gap: 8px;
+}
+
+p,
+div,
+li {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+  gap: 16px;
+  color: rgba(176, 177, 195, 1);
+}
+
+.company-name,
+a,
+.required-fields,
+.content-conclusion {
+  display: none;
+}
+
+div#main #application_form h2.heading {
+  color: white;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 68px;
+  letter-spacing: 0em;
+  text-align: left;
+  margin-bottom: 20px;
+}

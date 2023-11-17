@@ -407,7 +407,7 @@ function DisplayJobs(jobsObjectArray) {
                   ${jobObj.job.location.name}
               </div>
           </div>
-         <a href ="http://127.0.0.1:5500/filterpage/job.html?gh_jid=${
+         <a href ="/dev-sandbox/careers/job-listing?gh_jid=${
            jobObj.job.id
          }"> <button class="applybtn">
               Apply<i class="fa-solid fa-arrow-up-right-from-square"></i>
