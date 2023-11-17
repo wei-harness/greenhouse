@@ -3,6 +3,27 @@ body {
   margin: 0;
   font-family: Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 14px;
+  line-height: 150%;
+  background: #000;
+  color: #fff;
+}
+
+a {
+  /* text-decoration: none; */
+  color: #0278d5;
+}
+.field-error-msg {
+  color: #e43326;
+  /* line-height: 30px; */
+}
+.field-error {
+  border: solid 1px #e43326 !important;
+}
+#main_fields .asterisk,
+#custom_fields .asterisk,
+#demographic_questions .asterisk,
+#eeoc_fields .asterisk {
+  color: #e43326;
 }
 
 #wrapper {
@@ -14,8 +35,43 @@ body {
   max-width: unset;
 }
 
+.location {
+  color: #d9d9d9;
+  margin: 8px 0px;
+}
+.filter-container .filter-label {
+  color: #d9d9d9;
+}
+
+.accessible #content {
+  line-height: 150%;
+}
+
 div#application {
   padding: 30px 30px 30px 30px;
   /* background-color: #bbb; */
   max-width: unset;
+  border-radius: 12px;
+  border: 1px solid #fff;
+  background: #000;
+}
+
+.attach-or-paste .unstyled-button.link-button {
+  color: #0278d5;
+  font-size: 14px;
+}
+.attach-or-paste .unstyled-button {
+  background-color: unset;
+}
+.attach-or-paste .link-container a {
+  font-size: 14px;
+}
+
+.file-types {
+  color: #d9d9d9;
+}
+
+#footer {
+  border-top: solid 1px #000;
+  background-color: #000;
 }
