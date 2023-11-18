@@ -16,7 +16,7 @@ a:hover {
   color: #00ade4;
 }
 #app_body h1 {
-  margin-bottom: unset;
+  margin-bottom: 18px;
 }
 .field-error-msg {
   color: #e43326;
