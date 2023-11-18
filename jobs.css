@@ -146,3 +146,7 @@ body {
   cursor: pointer;
   display: none;
 }
+
+#grnhse_iframe {
+  border-radius: 12px;
+}
