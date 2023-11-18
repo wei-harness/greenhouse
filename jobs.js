@@ -353,7 +353,7 @@ getJobs().then((response) => {
       );
     });
   });
-  const viewMoreBtn = document.querySelector('.view-more');
+  const viewMoreBtn = document.querySelector('.gh-view-more');
   viewMoreBtn.addEventListener('click', function () {
     count += 8;
     getSelectedDepartmentAndLocation(
@@ -369,10 +369,10 @@ function DisplayJobs(jobsObjectArray) {
   mainElement.textContent = '';
   let htmlToAppend = '';
   if (jobsObjectArray.length > 8) {
-    const viewMoreBtn = document.querySelector('.view-more');
+    const viewMoreBtn = document.querySelector('.gh-view-more');
     viewMoreBtn.style.display = 'block';
   } else {
-    const viewMoreBtn = document.querySelector('.view-more');
+    const viewMoreBtn = document.querySelector('.gh-view-more');
     viewMoreBtn.style.display = 'none';
   }
   if (jobsObjectArray.length < 1) {
@@ -388,7 +388,7 @@ function DisplayJobs(jobsObjectArray) {
     }
 
     if (count >= jobsObjectArray.length) {
-      const viewMoreBtn = document.querySelector('.view-more');
+      const viewMoreBtn = document.querySelector('.gh-view-more');
       viewMoreBtn.style.display = 'none';
     }
     // console.log(i, count);
