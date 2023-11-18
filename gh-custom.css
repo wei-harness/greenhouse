@@ -10,7 +10,13 @@ body {
 
 a {
   /* text-decoration: none; */
-  color: #0278d5;
+  color: #0092e4;
+}
+a:hover {
+  color: #00ade4;
+}
+#app_body h1 {
+  margin-bottom: unset;
 }
 .field-error-msg {
   color: #e43326;
@@ -38,6 +44,10 @@ a {
 .location {
   color: #d9d9d9;
   margin: 8px 0px;
+  display: table;
+  border: 1px solid #757575;
+  padding: 4px 8px;
+  border-radius: 6px;
 }
 .filter-container .filter-label {
   color: #d9d9d9;
@@ -57,8 +67,11 @@ div#application {
 }
 
 .attach-or-paste .unstyled-button.link-button {
-  color: #0278d5;
+  color: #0092e4;
   font-size: 14px;
+}
+.attach-or-paste .unstyled-button.link-button:hover {
+  color: #00ade4;
 }
 .attach-or-paste .unstyled-button {
   background-color: unset;
