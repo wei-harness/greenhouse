@@ -23,7 +23,7 @@ async function getJobs() {
   // location dropdown
   createDropdown('Locations', offices);
 
-  let node = document.querySelector('.filter');
+  let node = document.querySelector('.gh-filter');
   node.insertAdjacentHTML('afterend', '<h1>Position Highlights</h1>');
 
   return { departments, jobs, offices };
@@ -37,7 +37,7 @@ async function getResponse(url) {
 let count = 8;
 // create Dropdown from reponse
 function createDropdown(text, array) {
-  const filter = document.querySelector('.filter');
+  const filter = document.querySelector('.gh-filter');
 
   let option = '';
   // const body = document.body;
@@ -127,7 +127,7 @@ async function showJobsFromSelectedFilters(
     });
     DisplayJobs(displayJobs);
   } else {
-    const mainElement = document.querySelector('.main');
+    const mainElement = document.querySelector('.gh-main');
     let allDepartments = [];
     departments.forEach((dept) => {
       allDepartments.push(dept);
@@ -365,7 +365,7 @@ getJobs().then((response) => {
 });
 
 function DisplayJobs(jobsObjectArray) {
-  const mainElement = document.querySelector('.main');
+  const mainElement = document.querySelector('.gh-main');
   mainElement.textContent = '';
   let htmlToAppend = '';
   if (jobsObjectArray.length > 8) {

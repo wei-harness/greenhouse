@@ -3,7 +3,7 @@ body {
   background: linear-gradient(172.83deg, #000000 4.49%, #000000 108.22%);
   color: white;
 }
-.container {
+.gh-container {
   background: linear-gradient(172.83deg, #000000 4.49%, #000000 108.22%);
   color: white;
   display: flex;
@@ -12,7 +12,7 @@ body {
   gap: 40px;
 }
 
-.filter {
+.gh-filter {
   padding: 20px;
   margin: auto;
   display: flex;
@@ -21,7 +21,7 @@ body {
   gap: 20px;
 }
 
-.filter > select {
+.gh-filter > select {
   /* width: 227px; */
   height: 50px;
   font-size: 16px;
@@ -37,7 +37,7 @@ body {
   color: rgba(146, 147, 171, 1);
 }
 
-.container > h1 {
+.gh-container > h1 {
   width: 444px;
   height: 68px;
 
@@ -50,7 +50,7 @@ body {
   margin: auto;
 }
 
-.main {
+.gh-main {
   width: 1000px;
   margin: auto;
   display: grid;
@@ -129,7 +129,7 @@ body {
   background-color: rgb(4, 95, 164);
 }
 
-.view-more {
+.gh-view-more {
   background-color: transparent;
   /* width: 255px; */
   height: 56px;
