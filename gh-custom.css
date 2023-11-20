@@ -113,6 +113,14 @@ div#application {
   line-height: 24px;
 }
 
+#custom_fields div.field input[type='text'],
+#custom_fields div.field textarea,
+#custom_fields div.field .text-field,
+#custom_fields div.field .select2-container-multi {
+  line-height: 24px;
+  font-size: 16px;
+}
+
 #submit_buttons {
   text-align: center;
 }
