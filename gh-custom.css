@@ -17,6 +17,7 @@ a:hover {
 }
 #app_body h1 {
   margin-bottom: 18px;
+  margin-top: 12px;
   font-size: 72px;
   font-weight: 800;
   line-height: 93px;
@@ -63,7 +64,7 @@ a:hover {
 }
 
 #content {
-  margin-top: 100px;
+  margin-top: 40px;
 }
 
 #content > div > h2,
@@ -74,6 +75,7 @@ a:hover {
   line-height: 68px;
   margin-top: 80px;
   margin-bottom: 50px;
+  display: block;
 }
 
 .accessible #content {
