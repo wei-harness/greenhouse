@@ -99,6 +99,12 @@ div#application {
 .file-types {
   color: #d9d9d9;
 }
+#main_fields div.field label,
+#custom_fields div.field label,
+#demographic_questions div.field label,
+#eeoc_fields div.field label {
+  font-size: 16px;
+}
 
 #footer {
   border-top: solid 1px transparent;
