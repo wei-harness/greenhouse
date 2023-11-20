@@ -91,7 +91,7 @@ div#application {
   border: 1px solid #fff;
   background: #000;
 }
-div#application h2 {
+div#application .heading {
   font-size: 48px;
   font-weight: 700;
   line-height: 68px;
