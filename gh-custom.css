@@ -18,6 +18,9 @@ a:hover {
 #app_body h1 {
   margin-bottom: 18px;
 }
+#header > a {
+  display: none;
+}
 .field-error-msg {
   color: #e43326;
   /* line-height: 30px; */
@@ -34,11 +37,12 @@ a:hover {
 
 #wrapper {
   max-width: 1200px;
-  padding: 0px 40px;
+  padding: 0px 0px;
 }
 
 #app_body {
   max-width: unset;
+  padding-left: 0px !important;
 }
 
 .location {
