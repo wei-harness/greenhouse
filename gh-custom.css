@@ -4,7 +4,7 @@ body {
   font-family: Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 150%;
-  background: #000;
+  background: rgba(0, 0, 0, 0.7);
   color: #fff;
 }
 
@@ -85,6 +85,6 @@ div#application {
 }
 
 #footer {
-  border-top: solid 1px #000;
-  background-color: #000;
+  border-top: solid 1px transparent;
+  background-color: transparent;
 }
