@@ -46,7 +46,9 @@ function createDropdown(text, array) {
       const divJobsLen = countJobs(arr);
       if (divJobsLen > 0) {
         option += `
+
           <option value="${arr.id}">${arr.name} (${divJobsLen})</option>
+
         `;
         if (arr.children.length > 0) {
           const children = arr.children;
