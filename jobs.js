@@ -5,7 +5,7 @@ async function getJobs() {
     'https://boards-api.greenhouse.io/v1/boards/harnessinc/departments?render_as=tree'; // department data is hierarchical
 
   const epOffice =
-    ' https://boards-api.greenhouse.io/v1/boards/harnessinc/offices?render_as=tree';
+    'https://boards-api.greenhouse.io/v1/boards/harnessinc/offices?render_as=tree';
   // "https://boards-api.greenhouse.io/v1/boards/harnessinc/offices/4021638007";
 
   let response = await getResponse(epDepartments);
@@ -81,11 +81,14 @@ function convertToId(text) {
 }
 
 function countJobs(division) {
-  const divJobsLen = division.jobs.length;
-  const totalJobsLen = division.children.reduce((sum, child) => {
-    return sum + child.jobs.length;
-  }, divJobsLen);
-  return totalJobsLen;
+  if (division.jobs) {
+    const divJobsLen = division.jobs.length;
+    const totalJobsLen = division.children.reduce((sum, child) => {
+      return sum + child.jobs.length;
+    }, divJobsLen);
+    return totalJobsLen;
+  }
+  return 1;
 }
 
 // get Selected Department and location
