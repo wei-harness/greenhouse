@@ -99,7 +99,6 @@ function countJobs(division) {
 }
 
 function countOfficeDepartmentJobs(office) {
-  console.log('..countOfficeDepartmentJobs..: ', office);
   return office.departments.reduce((sum, dept) => {
     return (sum += dept.jobs.length);
   }, 0);
