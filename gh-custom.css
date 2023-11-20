@@ -83,12 +83,19 @@ a:hover {
 }
 
 div#application {
-  padding: 30px 30px 30px 30px;
+  padding: 50px;
+  margin-top: 80px;
   /* background-color: #bbb; */
   max-width: unset;
   border-radius: 12px;
   border: 1px solid #fff;
   background: #000;
+}
+div#application h2 {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 68px;
+  margin-bottom: 30px;
 }
 
 .attach-or-paste .unstyled-button.link-button {
