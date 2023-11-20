@@ -121,6 +121,34 @@ div#application {
   font-size: 16px;
 }
 
+#main_fields div.field input[type='text'],
+#main_fields div.field textarea,
+#main_fields div.field .text-field,
+#custom_fields div.field input[type='text'],
+#custom_fields div.field textarea,
+#custom_fields div.field .text-field,
+#custom_fields div.field .select2-container-multi,
+#demographic_questions div.field input[type='text'],
+#demographic_questions div.field textarea,
+#demographic_questions div.field .text-field,
+#eeoc_fields div.field input[type='text'],
+#eeoc_fields div.field textarea,
+#eeoc_fields div.field .text-field {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+/* .select2-search input,
+.select2-search-choice-close,
+.select2-container .select2-choice abbr, */
+.select2-container .select2-choice .select2-arrow b {
+  background-size: 60px 52px !important;
+}
+.select2-container .select2-choice {
+  height: 32px;
+  line-height: 32px;
+}
+
 #submit_buttons {
   text-align: center;
 }
