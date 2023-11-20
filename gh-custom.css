@@ -18,9 +18,11 @@ a:hover {
 #app_body h1 {
   margin-bottom: 18px;
 }
-#header > a {
+#header > a,
+#header > .company-name {
   display: none;
 }
+
 .field-error-msg {
   color: #e43326;
   /* line-height: 30px; */
@@ -55,6 +57,16 @@ a:hover {
 }
 .filter-container .filter-label {
   color: #d9d9d9;
+}
+
+#content > div > h2,
+#content > div > h3,
+#content > div > strong {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 68px;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 
 .accessible #content {
