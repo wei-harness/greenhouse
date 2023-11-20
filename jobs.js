@@ -18,10 +18,10 @@ async function getJobs() {
   const offices = response.offices;
 
   // department Dropdown
-  createDropdown('Departments', departments);
+  createDropdown('All departments', departments);
 
   // location dropdown
-  createDropdown('Locations', offices);
+  createDropdown('All locations', offices);
 
   let node = document.querySelector('.gh-filter');
   node.insertAdjacentHTML('afterend', '<h1>Position Highlights</h1>');
@@ -43,18 +43,20 @@ function createDropdown(text, array) {
   // const body = document.body;
   if (array.length > 0) {
     array.forEach((arr) => {
-      option += `
-       
-        <option value="${arr.id}">${arr.name}</option>
-
-      `;
-      if (arr.children.length > 0) {
-        const children = arr.children;
-        children.forEach((child) => {
-          option += `
-        <option value="${child.id}" >&nbsp;&nbsp;${child.name}</option>
-      `;
-        });
+      if (arr.jobs.length > 0) {
+        option += `
+          <option value="${arr.id}">${arr.name}</option>
+        `;
+        if (arr.children.length > 0) {
+          const children = arr.children;
+          children.forEach((child) => {
+            if (child.jobs.length > 0) {
+              option += `
+                <option value="${child.id}" >&nbsp;&nbsp;${child.name}</option>
+              `;
+            }
+          });
+        }
       }
     });
   }
