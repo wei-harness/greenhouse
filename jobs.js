@@ -43,21 +43,21 @@ function createDropdown(text, array) {
   // const body = document.body;
   if (array.length > 0) {
     array.forEach((arr) => {
-      // if (arr.jobs.length > 0) {
-      option += `
+      if (countJobs(arr)) {
+        option += `
           <option value="${arr.id}">${arr.name} (${arr.jobs.length})</option>
         `;
-      if (arr.children.length > 0) {
-        const children = arr.children;
-        children.forEach((child) => {
-          // if (child.jobs.length > 0) {
-          option += `
+        if (arr.children.length > 0) {
+          const children = arr.children;
+          children.forEach((child) => {
+            if (child.jobs.length > 0) {
+              option += `
                 <option value="${child.id}" >&nbsp;&nbsp;${child.name} (${child.jobs.length})</option>
               `;
-          // }
-        });
+            }
+          });
+        }
       }
-      // }
     });
   }
 
@@ -75,6 +75,14 @@ function createDropdown(text, array) {
 
 function convertToId(text) {
   return text.replaceAll(' ', '_').toLowerCase();
+}
+
+function countJobs(division) {
+  const divJobsLen = division.jobs.length;
+  const totalJobsLen = division.children.reduce((sum, child) => {
+    return sum + child.jobs.length;
+  }, divJobsLen);
+  return totalJobsLen;
 }
 
 // get Selected Department and location
