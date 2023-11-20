@@ -376,7 +376,7 @@ function DisplayJobs(jobsObjectArray) {
     viewMoreBtn.style.display = 'none';
   }
   if (jobsObjectArray.length < 1) {
-    htmlToAppend = `<div style="text-align: center;font-size: 24px;">No Jobs found !</div>
+    htmlToAppend = `<div style="text-align: center; width: 100%; font-size: 24px; margin: 40px;">No jobs found!</div>
 `;
     mainElement.insertAdjacentHTML('beforeend', htmlToAppend);
     return;
