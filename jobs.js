@@ -53,7 +53,9 @@ function createDropdown(text, array) {
         if (arr.children.length > 0) {
           const children = arr.children;
           children.forEach((child) => {
-            const childJobsLen = countOfficeDepartmentJobs(child);
+            const childJobsLen = child.jobs
+              ? child.jobs.length
+              : countOfficeDepartmentJobs(child);
             if (childJobsLen > 0) {
               option += `
                 <option value="${child.id}" >&nbsp;&nbsp;${child.name} (${childJobsLen})</option>
