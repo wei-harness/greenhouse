@@ -61,8 +61,9 @@ function createDropdown(text, array) {
     });
   }
 
+  const dropdownId = convertToId(text);
   const htmlToAppend = `
-  <select name="${text}" id="${text}">
+  <select name="${dropdownId}" id="${dropdownId}">
   <option value="all"  selected  >${text}</option>
   ${option}</select>
 
@@ -72,12 +73,16 @@ function createDropdown(text, array) {
   filter.insertAdjacentHTML('beforeend', htmlToAppend);
 }
 
+function convertToId(text) {
+  return text.replaceAll(' ', '_').toLowerCase();
+}
+
 // get Selected Department and location
 function getSelectedDepartmentAndLocation(departments, jobs, offices) {
-  const departmentSelect = document.getElementById('Departments');
+  const departmentSelect = document.getElementById('all_departments');
   const selectedDepartment =
     departmentSelect.options[departmentSelect.selectedIndex].value;
-  const locationSelect = document.getElementById('Locations');
+  const locationSelect = document.getElementById('all_locations');
   const selectedLocation =
     locationSelect.options[locationSelect.selectedIndex].value;
 
