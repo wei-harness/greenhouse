@@ -96,8 +96,8 @@ function countJobs(division) {
   return totalLocJobsLen;
 }
 
-function countOfficeDepartmentJobs(department) {
-  return department.reduce((sum, dept) => {
+function countOfficeDepartmentJobs(office) {
+  return office.departments.reduce((sum, dept) => {
     return (sum += dept.jobs.length);
   }, 0);
 }
