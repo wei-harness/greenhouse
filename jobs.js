@@ -83,12 +83,22 @@ function convertToId(text) {
 function countJobs(division) {
   if (division.jobs) {
     const divJobsLen = division.jobs.length;
-    const totalJobsLen = division.children.reduce((sum, child) => {
+    const totalDivJobsLen = division.children.reduce((sum, child) => {
       return sum + child.jobs.length;
     }, divJobsLen);
-    return totalJobsLen;
+    return totalDivJobsLen;
   }
-  return 1;
+  const countryJobsLen = countOfficeDepartmentJobs(division);
+  const totalLocJobsLen = division.children.reduce((sum, child) => {
+    return sum + countOfficeDepartmentJobs(child);
+  }, countryJobsLen);
+  return totalLocJobsLen;
+}
+
+function countOfficeDepartmentJobs(department) {
+  return department.reduce((sum, dept) => {
+    return (sum += dept.jobs.length);
+  }, 0);
 }
 
 // get Selected Department and location
