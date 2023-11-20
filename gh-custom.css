@@ -105,6 +105,17 @@ div#application {
 #eeoc_fields div.field label {
   font-size: 16px;
 }
+.accessible #submit_app,
+.accessible #apply_button {
+  font-family: Inter;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+}
+
+#submit_buttons {
+  text-align: center;
+}
 
 #footer {
   border-top: solid 1px transparent;
