@@ -43,21 +43,21 @@ function createDropdown(text, array) {
   // const body = document.body;
   if (array.length > 0) {
     array.forEach((arr) => {
-      if (arr.jobs.length > 0) {
-        option += `
-          <option value="${arr.id}">${arr.name}</option>
+      // if (arr.jobs.length > 0) {
+      option += `
+          <option value="${arr.id}">${arr.name} (${arr.jobs.length})</option>
         `;
-        if (arr.children.length > 0) {
-          const children = arr.children;
-          children.forEach((child) => {
-            if (child.jobs.length > 0) {
-              option += `
-                <option value="${child.id}" >&nbsp;&nbsp;${child.name}</option>
+      if (arr.children.length > 0) {
+        const children = arr.children;
+        children.forEach((child) => {
+          // if (child.jobs.length > 0) {
+          option += `
+                <option value="${child.id}" >&nbsp;&nbsp;${child.name} (${child.jobs.length})</option>
               `;
-            }
-          });
-        }
+          // }
+        });
       }
+      // }
     });
   }
 
