@@ -1,7 +1,9 @@
 /* CI calculator */
-console.log("rohan Test 1");
-const weekly_build_minutes = document.getElementById("weekly_build_minutes");
-weekly_build_minutes.setAttribute("type", "text");
+console.log("rohan Test 2");
+const weekly_build_minutes = document.querySelectorAll("weekly_build_minutes");
+weekly_build_minutes.forEach((input) => {
+  input.setAttribute("type", "text");
+});
 const numInputs = document.querySelectorAll("input");
 const Select = document.querySelectorAll("select");
 const add_additional = document.getElementById("add_additional");
@@ -33,15 +35,11 @@ function updateValue(event) {
   }
   input.value = formattedValue;
 }
-document.getElementById("weekly_build").addEventListener("input", updateValue);
+// document.getElementById("weekly_build").addEventListener("input", updateValue);
 
 numInputs.forEach(function (input) {
-  input.addEventListener("input", function (e) {
-    if (e.target.value === "") {
-      e.target.value = "";
-    }
-    main();
-  });
+  input.addEventListener("input", updateValue);
+  main();
 });
 
 Select.forEach(function (select) {
