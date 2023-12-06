@@ -1,13 +1,13 @@
 /* CI calculator */
-console.log("test 2");
+console.log("test 3");
 document.getElementById("weekly_build_minutes").setAttribute("type", "text");
 const numInputs = document.querySelectorAll("input");
 const Select = document.querySelectorAll("select");
 const add_additional = document.getElementById("add_additional");
-const options = document.getElementsByTagName("option");
 
+const options = document.querySelectorAll("option");
 options.forEach((option) => {
-  option.style.backgroundColor = "green";
+  option.style.color = "black";
 });
 
 let number_of_builds_per_week = 100;
