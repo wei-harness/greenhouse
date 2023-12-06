@@ -1,9 +1,5 @@
 /* CI calculator */
-console.log("rohan Test 2");
-const weekly_build_minutes = document.querySelectorAll("weekly_build_minutes");
-weekly_build_minutes.forEach((input) => {
-  input.setAttribute("type", "text");
-});
+console.log("rohan Test 3");
 const numInputs = document.querySelectorAll("input");
 const Select = document.querySelectorAll("select");
 const add_additional = document.getElementById("add_additional");
