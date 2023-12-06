@@ -1,5 +1,5 @@
 /* CI calculator */
-console.log("rohan Test 3");
+console.log("test 1");
 const numInputs = document.querySelectorAll("input");
 const Select = document.querySelectorAll("select");
 const add_additional = document.getElementById("add_additional");
@@ -9,10 +9,17 @@ let avg_build_time = 15;
 let selected_provider = "circleCI";
 let selected_machine_type = "Linux_4_cores";
 
+let machine_cost_per_mins;
+let weekly_build_minutes;
+
 let harness_cost; //yearly
 let circleCI_cost; //yearly
 let github_actions_cost; //yearly
 let other_provider_cost; // yearly
+
+let harness_cost_per_mins;
+//let circleCI_cost_per_mins;
+//let github_actions_cost_per_mins;
 
 let harness_saving_percentage;
 
@@ -21,21 +28,32 @@ let annual_cost_with_harness = [];
 let annual_hours_saved = [];
 let annual_hours_with_other_provider = [];
 
+let annual_hour = 0;
+let saved_hour = 0;
+
 // comma
 function updateValue(event) {
   let formattedValue = 0;
   const input = event.target;
   const inputValue = input.value.replace(/\D/g, "");
   if (!isNaN(inputValue)) {
+    // formattedValue = new Intl.NumberFormat().format(parseInt(inputValue));
     formattedValue = parseInt(inputValue || 0).toLocaleString();
   }
   input.value = formattedValue;
 }
-// document.getElementById("weekly_build").addEventListener("input", updateValue);
+
+document.getElementById("weekly_build").addEventListener("input", updateValue);
+document.getElementById("weekly_build_minutes").addEventListener("input", updateValue);
 
 numInputs.forEach(function (input) {
-  input.addEventListener("input", updateValue);
-  main();
+  input.addEventListener("input", main());
+});
+
+Select.forEach(function (select) {
+  select.addEventListener("input", function (e) {
+    main();
+  });
 });
 
 Select.forEach(function (select) {
@@ -87,38 +105,47 @@ function calculate(
   avg_build_time,
   number_of_builds_per_week
 ) {
-  let harness_cost_per_mins;
-  let harness_saving_percentage;
   switch (selected_machine_type) {
     case "Linux_4_cores":
       harness_cost_per_mins = 0.01;
-      //circleCI_cost_per_mins
+      //circleCI_cost_per_mins = 0.012;
+      //github_actions_cost_per_mins = 0.016;
       harness_saving_percentage = 0.3;
 
       break;
 
     case "Linux_8_cores":
       harness_cost_per_mins = 0.025;
+      //circleCI_cost_per_mins = 0.06;
+      //github_actions_cost_per_mins = 0.032;
       harness_saving_percentage = 0.3;
 
       break;
     case "Linux_16_cores":
       harness_cost_per_mins = 0.05;
+      //circleCI_cost_per_mins = 0.012;
+      //github_actions_cost_per_mins = 0.064;
       harness_saving_percentage = 0.3;
 
       break;
     case "Linux_32_cores":
       harness_cost_per_mins = 0.1;
+      //circleCI_cost_per_mins = 0.18;
+      //github_actions_cost_per_mins = 0.128;
       harness_saving_percentage = 0.3;
 
       break;
     case "Windows_4_cores":
       harness_cost_per_mins = 0.04;
+      //circleCI_cost_per_mins = 0.072;
+      //github_actions_cost_per_mins = 0.064;
       harness_saving_percentage = 0.3;
 
       break;
     case "macOS_M1_6_cores":
       harness_cost_per_mins = 0.3;
+      //circleCI_cost_per_mins = 0.09;
+      //github_actions_cost_per_mins = 0.08;
       harness_saving_percentage = 0.2;
 
       break;
@@ -127,7 +154,7 @@ function calculate(
       break;
   }
 
-  let weekly_build_minutes = number_of_builds_per_week * avg_build_time;
+  weekly_build_minutes = number_of_builds_per_week * avg_build_time;
   harness_cost = Math.round(weekly_build_minutes * harness_cost_per_mins * 52);
   switch (selected_provider) {
     case "circleCI":
@@ -169,8 +196,8 @@ function calculate(
   }
 
   if (!table) {
-    let annual_hour = (number_of_builds_per_week * avg_build_time * 52) / 60;
-    let saved_hour = harness_saving_percentage * annual_hour;
+    annual_hour = (number_of_builds_per_week * avg_build_time * 52) / 60;
+    saved_hour = harness_saving_percentage * annual_hour;
     const hours = hour_saved.getElementsByTagName("h2")[0];
     hours.textContent = `${format(Math.round(saved_hour))} `;
 
@@ -202,8 +229,8 @@ function calculate(
 
     const hours = hour_saved.getElementsByTagName("h2")[0];
 
-    let annual_hour = (number_of_builds_per_week * avg_build_time * 52) / 60;
-    let saved_hour = harness_saving_percentage * annual_hour; // 0.3 * annual_hour;
+    annual_hour = (number_of_builds_per_week * avg_build_time * 52) / 60;
+    saved_hour = harness_saving_percentage * annual_hour; // 0.3 * annual_hour;
     const sum = annual_hours_saved.reduce((partialSum, a) => partialSum + a, 0);
 
     hours.textContent = `${format(Math.round(sum + saved_hour))} `;
@@ -249,6 +276,94 @@ function calculate(
     }
   }
 }
+
+function format(num) {
+  const strNum = num.toString();
+  const lclStrNum = num.toLocaleString();
+
+  // If the number has fewer than 9 digits, return it as is
+  if (strNum.length < 9) return lclStrNum;
+
+  // Abbreviate billions and trillions with two decimal points
+  if (num < 1000000000000) return (num / 1000000000).toFixed(2) + "B";
+  return (num / 1000000000000).toFixed(2) + "T";
+  /* former implementation
+  if (num < 1000000) {
+    // Display the full number with commas
+    return num.toLocaleString();
+  } else {
+    // Display in the format "1.234M"
+    return (num / 1000000).toFixed(3) + 'M';
+  }
+  */
+}
+
+function formatPercentage(num) {
+  if (isNaN(num)) {
+    return 0;
+  } else {
+    return `${Math.round(num * 100)}%`;
+  }
+}
+
+function addToArray() {
+  const annual_hours = (number_of_builds_per_week * avg_build_time * 52) / 60;
+  const saved_hours = harness_saving_percentage * annual_hours; // 0.3 * annual_hour;
+  // const saved_hours = 0.3 * (weekly_build_minutes / 60);
+  annual_hours_saved.push(saved_hours);
+  annual_hours_with_other_provider.push(annual_hours);
+
+  annual_cost_with_harness.push(harness_cost);
+  // circleCI_cost
+  selected_provider === "circleCI"
+    ? annual_cost_with_other_provider.push(circleCI_cost)
+    : annual_cost_with_other_provider.push(github_actions_cost);
+
+  main();
+}
+// function not in use
+function removeFromArray(other, harness, annual_hrs_saved) {
+  removeFirst = function (val, array) {
+    array.splice(array.indexOf(val), 1);
+    return array;
+  };
+
+  removeFirst(other, annual_cost_with_other_provider);
+  removeFirst(harness, annual_cost_with_harness);
+  removeFirst(annual_hrs_saved, annual_hours_saved);
+
+  main();
+}
+
+//clear trashcan //
+
+function clearBuildInputs(skipVisibilityCheck) {
+  const elem_inputs = document.getElementsByClassName("inputs")[0];
+  if (elem_inputs && !skipVisibilityCheck) {
+    const elem_inputs_visible = elem_inputs.style.display !== "none";
+    if (elem_inputs_visible) {
+      elem_inputs.style.display = "none";
+    }
+  }
+  var weeklyBuildInput = document.getElementById("weekly_build");
+  var weeklyBuildMinutesInput = document.getElementById("weekly_build_minutes");
+  var machineTypeInput = document.getElementById("machine_type");
+
+  if (weeklyBuildInput) {
+    weeklyBuildInput.value = 0;
+  }
+
+  if (weeklyBuildMinutesInput) {
+    weeklyBuildMinutesInput.value = 0;
+  }
+
+  if (machineTypeInput) {
+    machineTypeInput.selectedIndex = 1;
+  }
+  main();
+}
+
+// add_additional.addEventListener('click', addToArray); // moved into handleAddAdditional
 
 /* ---- */
 
@@ -323,7 +438,82 @@ function handleAddAdditional() {
 
           main();
         }
+        /* The former approach has flaws, say when 2 rows have same cost/saved_hours/...
+        const values = row.querySelectorAll('td');
 
+        const annual_hrs_saved =
+          ((parseInt(values[0].textContent) *
+            parseInt(values[1].textContent) *
+            52) /
+            60) *
+          0.3;
+        switch (values[2].textContent) {
+          case 'Linux_4_cores':
+            harness_cost_per_mins = 0.01;
+            circleCI_cost_per_mins = 0.012;
+            github_actions_cost_per_mins = 0.016;
+            harness_saving_percentage = 0.3;
+
+            break;
+
+          case 'Linux_8_cores':
+            harness_cost_per_mins = 0.025;
+            circleCI_cost_per_mins = 0.06;
+            github_actions_cost_per_mins = 0.032;
+            harness_saving_percentage = 0.3;
+
+            break;
+          case 'Linux_16_cores':
+            harness_cost_per_mins = 0.05;
+            circleCI_cost_per_mins = 0.012;
+            github_actions_cost_per_mins = 0.064;
+            harness_saving_percentage = 0.3;
+
+            break;
+          case 'Linux_32_cores':
+            harness_cost_per_mins = 0.1;
+            circleCI_cost_per_mins = 0.18;
+            github_actions_cost_per_mins = 0.128;
+            harness_saving_percentage = 0.3;
+
+            break;
+          case 'Windows_4_cores':
+            harness_cost_per_mins = 0.04;
+            circleCI_cost_per_mins = 0.072;
+            github_actions_cost_per_mins = 0.064;
+            harness_saving_percentage = 0.3;
+
+            break;
+          case 'macOS_M1_6_cores':
+            harness_cost_per_mins = 0.3;
+            circleCI_cost_per_mins = 0.09;
+            github_actions_cost_per_mins = 0.08;
+            harness_saving_percentage = 0.2;
+
+            break;
+
+          default:
+            break;
+        }
+
+        let cost;
+        switch (selected_provider) {
+          case 'circleCI':
+            cost = Math.round(weekly_build_minutes * circleCI_cost_per_mins);
+            break;
+
+          case 'github_actions':
+            cost = Math.round(
+              weekly_build_minutes * github_actions_cost_per_mins
+            );
+            break;
+
+          default:
+            break;
+        }
+
+        removeFromArray(cost, harness_cost, annual_hrs_saved);
+        */
         if (row) {
           row.remove();
         }
@@ -350,71 +540,3 @@ function handleAddAdditional() {
 add_additional.addEventListener("click", handleAddAdditional);
 
 main();
-
-function format(num) {
-  const strNum = num.toString();
-  const lclStrNum = num.toLocaleString();
-
-  // If the number has fewer than 9 digits, return it as is
-  if (strNum.length < 9) return lclStrNum;
-
-  // Abbreviate billions and trillions with two decimal points
-  if (num < 1000000000000) return (num / 1000000000).toFixed(2) + "B";
-  return (num / 1000000000000).toFixed(2) + "T";
-}
-
-function formatPercentage(num) {
-  if (isNaN(num)) {
-    return 0;
-  } else {
-    return `${Math.round(num * 100)}%`;
-  }
-}
-
-function addToArray() {
-  const annual_hours = (number_of_builds_per_week * avg_build_time * 52) / 60;
-  const saved_hours = harness_saving_percentage * annual_hours; // 0.3 * annual_hour;
-  annual_hours_saved.push(saved_hours);
-  annual_hours_with_other_provider.push(annual_hours);
-
-  annual_cost_with_harness.push(harness_cost);
-  // circleCI_cost
-  selected_provider === "circleCI"
-    ? annual_cost_with_other_provider.push(circleCI_cost)
-    : annual_cost_with_other_provider.push(github_actions_cost);
-
-  main();
-}
-
-//clear trashcan //
-
-function clearBuildInputs(skipVisibilityCheck) {
-  const elem_inputs = document.getElementsByClassName("inputs")[0];
-  if (elem_inputs && !skipVisibilityCheck) {
-    const elem_inputs_visible = elem_inputs.style.display !== "none";
-    if (elem_inputs_visible) {
-      elem_inputs.style.display = "none";
-    }
-  }
-  let weeklyBuildInput = document.getElementById("weekly_build");
-  let weeklyBuildMinutesInput = document.getElementById("weekly_build_minutes");
-  let machineTypeInput = document.getElementById("machine_type");
-
-  if (weeklyBuildInput) {
-    weeklyBuildInput.value = 0;
-  }
-
-  if (weeklyBuildMinutesInput) {
-    weeklyBuildMinutesInput.value = 0;
-  }
-
-  if (machineTypeInput) {
-    machineTypeInput.selectedIndex = 1;
-  }
-  main();
-}
-
-const options = document.querySelectorAll("option");
-options.forEach((option) => {
-  option.style.color = "black";
-});
