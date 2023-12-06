@@ -1,5 +1,7 @@
 /* CI calculator */
 console.log("rohan Test 1");
+const weekly_build_minutes = document.getElementById("weekly_build_minutes");
+weekly_build_minutes.setAttribute("type", "text");
 const numInputs = document.querySelectorAll("input");
 const Select = document.querySelectorAll("select");
 const add_additional = document.getElementById("add_additional");
@@ -253,7 +255,6 @@ function calculate(
     }
   }
 }
-
 
 /* ---- */
 
