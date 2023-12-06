@@ -35,6 +35,7 @@ let saved_hour = 0;
 function updateValue(event) {
   let formattedValue = 0;
   const input = event.target;
+  console.log(input.value);
   const inputValue = input.value.replace(/\D/g, "");
   if (!isNaN(inputValue)) {
     // formattedValue = new Intl.NumberFormat().format(parseInt(inputValue));
@@ -44,16 +45,12 @@ function updateValue(event) {
 }
 
 document.getElementById("weekly_build").addEventListener("input", updateValue);
-document.getElementById("weekly_build_minutes").addEventListener("input", updateValue);
+document
+  .getElementById("weekly_build_minutes")
+  .addEventListener("input", updateValue);
 
 numInputs.forEach(function (input) {
-  input.addEventListener("input", main());
-});
-
-Select.forEach(function (select) {
-  select.addEventListener("input", function (e) {
-    main();
-  });
+  input.addEventListener("input", main);
 });
 
 Select.forEach(function (select) {
