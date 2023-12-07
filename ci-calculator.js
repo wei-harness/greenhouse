@@ -1,5 +1,4 @@
 /* CI calculator */
-document.getElementById("weekly_build_minutes").setAttribute("type", "text");
 const numInputs = document.querySelectorAll("input");
 const Select = document.querySelectorAll("select");
 const add_additional = document.getElementById("add_additional");
@@ -40,6 +39,7 @@ let saved_hour = 0;
 function updateValue(event) {
   let formattedValue = 0;
   const input = event.target;
+  console.log(input.value);
   const inputValue = input.value.replace(/\D/g, "");
   if (!isNaN(inputValue)) {
     // formattedValue = new Intl.NumberFormat().format(parseInt(inputValue));
