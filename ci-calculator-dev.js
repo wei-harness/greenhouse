@@ -1,4 +1,5 @@
 /* CI calculator */
+
 const numInputs = document.querySelectorAll("input");
 const Select = document.querySelectorAll("select");
 const add_additional = document.getElementById("add_additional");
