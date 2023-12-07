@@ -1,6 +1,5 @@
 /* CI calculator */
-console.log("test 3");
-document.getElementById("weekly_build_minutes").setAttribute("type", "text");
+console.log("testing 5");
 const numInputs = document.querySelectorAll("input");
 const Select = document.querySelectorAll("select");
 const add_additional = document.getElementById("add_additional");
